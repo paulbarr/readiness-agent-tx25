@@ -19,34 +19,10 @@ import javax.enterprise.context.RequestScoped;
 @RequestScoped
 public class SimpleServlet extends HttpServlet {
 
-	@Inject @ConfigProperty(name="domains1CellManager01_db2_user")
-	private Provider<String> domains1CellManager01_db2_user;
-
-	@Inject @ConfigProperty(name="domains1CellManager01_db2_password")
-	private Provider<String> domains1CellManager01_db2_password;
-
 	@Override
 	protected void doGet(HttpServletRequest reqest, HttpServletResponse response) throws ServletException, IOException {
 
 	String resourceName = "accessDenied.png";
-	String user = domains1CellManager01_db2_user.get();
-	String password = domains1CellManager01_db2_password.get();
-
-	if(user.equals("test") && password.equals("test")) {
-		resourceName = "testSystem.png";
-	}
-
-	if(user.equals("dev") && password.equals("dev")) {
-                resourceName = "devSystem.png";
-        }
-
-
-		
-
-		//response.getWriter().println("Hello World with config injection");
-		//response.getWriter().println("User: " + domains1CellManager01_db2_user);
-		//response.getWriter().println("Pass: " + domains1CellManager01_db2_password);
-
 		
 	  	// set the content type to image/jpeg.
         response.setContentType("image/jpeg");  

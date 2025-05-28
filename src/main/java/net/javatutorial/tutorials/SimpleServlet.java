@@ -18,7 +18,7 @@ public class SimpleServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest reqest, HttpServletResponse response) throws ServletException, IOException {
 
 
-	    String resourceName = "accessDenied.png";
+	    String resourceName = "probeFailed.png";
 		try {
             resourceName = checkReadiness();
         } catch(Error er ) {
@@ -70,7 +70,7 @@ public class SimpleServlet extends HttpServlet {
     //Stub method for checking the readiness of the machine
     private String checkReadiness() {
         System.out.println("Getting readiness for machine: " + EnvConfig.configureEnvDiscovery());
-        return "devSystem.png";
+        return "probeActive.png";
     }
 	
 	@Override

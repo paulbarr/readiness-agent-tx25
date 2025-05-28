@@ -17,8 +17,21 @@ public class SimpleServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest reqest, HttpServletResponse response) throws ServletException, IOException {
 
-	String resourceName = "accessDenied.png";
-		
+
+	    String resourceName = "accessDenied.png";
+		try {
+            resourceName = checkReadiness();
+        } catch(Error er ) {
+            //Unable to check readiness, resource for unable to check readiness is set
+            System.out.println("Error getting readiness");
+            System.out.println(er);
+        } 
+          catch (Exception e) {
+            //Unable to check readiness, resource for unable to check readiness is set
+            System.out.println("Exception getting readiness");
+            System.out.println(e);
+        }
+        
 	  	// set the content type to image/jpeg.
         response.setContentType("image/jpeg");  
           
@@ -53,10 +66,16 @@ public class SimpleServlet extends HttpServlet {
         bout.close();  
         out.close();  	
 	}
+
+    //Stub method for checking the readiness of the machine
+    private String checkReadiness() {
+        System.out.println("Getting readiness for machine: " + EnvConfig.configureEnvDiscovery());
+        return "devSystem.png";
+    }
 	
 	@Override
 	public void init() throws ServletException {
-		System.out.println("Servlet " + this.getServletName() + " has started on machine: " + EnvConfig.configureEnvDiscovery());
+		System.out.println("Servlet " + this.getServletName() + " has started");
 	}
 
 	@Override

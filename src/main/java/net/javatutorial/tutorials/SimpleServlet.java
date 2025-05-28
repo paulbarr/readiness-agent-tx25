@@ -3,16 +3,11 @@ package net.javatutorial.tutorials;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.inject.Inject;
-import javax.inject.Provider;
-import javax.enterprise.context.ApplicationScoped;
-import org.eclipse.microprofile.config.inject.ConfigProperty;
 
 import com.acme.common.EnvConfig;
 
 import java.io.*;
 import javax.servlet.*;
-import javax.servlet.http.*;
 import java.net.URL;
 import javax.enterprise.context.RequestScoped;
 

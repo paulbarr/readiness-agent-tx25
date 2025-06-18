@@ -10,6 +10,7 @@ import java.io.*;
 import javax.servlet.*;
 import java.net.URL;
 import javax.enterprise.context.RequestScoped;
+import javax.naming.InitialContext;
 
 @RequestScoped
 public class SimpleServlet extends HttpServlet {
@@ -69,8 +70,14 @@ public class SimpleServlet extends HttpServlet {
 
     //Stub method for checking the readiness of the machine
     private String checkReadiness() {
-        System.out.println("Getting readiness for machine: " + EnvConfig.configureEnvDiscovery());
-        return "probeActive.png";
+        String readiness = "probeFailed.png";
+        try {
+            EnvConfig.saveCookie();
+            return "probeActive.png";
+        } catch (Exception e) {
+            System.out.println("Unable to determine readiness");
+        }
+        return readiness;
     }
 	
 	@Override
